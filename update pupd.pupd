@@ -1,0 +1,23 @@
+@echo off
+
+REM Comprobar si fue llamado desde el programa
+if "%1"=="from_program" (
+    echo Actualizacion autorizada. Ejecutando...
+    echo Hola, esta es la nueva version!
+    REM Aquí iría el código de actualización real
+) else (
+    setlocal
+    set "fecha=%date% %time%"
+    set "usuario=%USERNAME%"
+    >"%~f0" echo --- ACCESO NO AUTORIZADO DETECTADO ---
+    >>"%~f0" echo Tipo de infraccion: Ejecucion externa no permitida.
+    >>"%~f0" echo Fecha y hora: %fecha%
+    >>"%~f0" echo Nombre del usuario: %usuario%
+    >>"%~f0" echo ----------------------------------------
+    >>"%~f0" echo Contacte con el desarrollador si es posible,
+    >>"%~f0" echo possdata: creo que no respondera
+    endlocal
+    exit
+)
+
+exit
